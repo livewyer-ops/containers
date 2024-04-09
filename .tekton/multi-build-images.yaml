@@ -30,8 +30,8 @@ spec:
     # -- Ref. <https://hub.docker.com/u/livewyer>
     - name: IMAGE_REGISTRY
       value: livewyer
-  serviceAccountName: pipelines-as-code-runner
   taskRunTemplate:
+    serviceAccountName: pipelines-as-code-runner
     podTemplate:
       securityContext:
         fsGroup: 65532

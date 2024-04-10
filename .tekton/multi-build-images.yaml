@@ -1,0 +1,49 @@
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  name: public-containers-multi-build
+  annotations:
+    pipelinesascode.tekton.dev/on-cel-expression: |
+      ( event == "pull_request" || ( event == "push" && source_branch == "main") ) && body.sender.login != "livewyer-bot"
+
+    # The branch or tag we are targeting (i.e.: main, refs/tags/*)
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+spec:
+  pipelineRef:
+    resolver: cluster
+    params:
+      - name: kind
+        value: pipeline
+      - name: name
+        value: multi-build-push
+  params:
+    - name: REPO_OWNER
+      value: "{{ repo_owner }}"
+    - name: REPO_NAME
+      value: "{{ repo_name }}"
+    - name: REPO_REVISION
+      value: "{{ source_branch }}"
+    - name: PULL_REQUEST_NUMBER
+      value: "{{ pull_request_number }}"
+    - name: COMMIT_SHA
+      value: "{{ revision }}"
+    # -- Ref. <https://hub.docker.com/u/livewyer>
+    - name: IMAGE_REGISTRY
+      value: livewyer
+  taskRunTemplate:
+    serviceAccountName: pipelines-as-code-runner
+    podTemplate:
+      securityContext:
+        fsGroup: 65532
+  workspaces:
+    - name: source
+      volumeClaimTemplate:
+        spec:
+          accessModes:
+          - ReadWriteOnce
+          resources:
+            requests:
+              storage: 128Mi
+    - name: dockerconfig
+      secret:
+        secretName: lw-dockerhub-regcred

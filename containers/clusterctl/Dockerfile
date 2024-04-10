@@ -2,6 +2,9 @@
 # Base image
 FROM alpine:3.19 as build
 
+# Maintainers
+LABEL org.opencontainers.image.authors="hello@livewyer.com"
+
 # Build arguments
 ARG BINARY_VERSION="1.6.3"
 ARG TARGETARCH=amd64

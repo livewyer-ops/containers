@@ -2,9 +2,6 @@
 # Base image
 FROM alpine:3.19 as build
 
-# Maintainers
-LABEL org.opencontainers.image.authors="hello@livewyer.com"
-
 # Build arguments
 ARG BINARY_VERSION="1.6.3"
 ARG TARGETARCH=amd64
@@ -29,6 +26,13 @@ RUN grep "clusterctl-$TARGETOS-$TARGETARCH" checksums.sha512 | sha512sum -c; \
 
 ## Final stage: prepare image
 FROM alpine:3.19 AS clusterctl
+
+# OCI labels
+LABEL org.opencontainers.image.authors="hello@livewyer.com"
+LABEL org.opencontainers.image.url="https://livewyer.io"
+LABEL org.opencontainers.image.source="https://github/livewyer-ops"
+LABEL org.opencontainers.image.licenses="MIT"
+LABEL org.opencontainers.image.version="$BINARY_VERSION"
 
 # Create/set user and group
 RUN set -eu; \

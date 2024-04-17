@@ -21,7 +21,7 @@ spec:
       value: "{{ repo_owner }}"
     - name: REPO_NAME
       value: "{{ repo_name }}"
-    - name: REPO_REVISION
+    - name: SOURCE_BRANCH
       value: "{{ source_branch }}"
     - name: PULL_REQUEST_NUMBER
       value: "{{ pull_request_number }}"

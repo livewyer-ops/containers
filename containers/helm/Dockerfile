@@ -27,6 +27,13 @@ RUN grep "helm-v$BINARY_VERSION-$TARGETOS-$TARGETARCH.tar.gz" checksums.sha512 |
 ## Final stage: prepare image
 FROM alpine:3 AS helm
 
+# OCI labels
+LABEL org.opencontainers.image.authors="hello@livewyer.com"
+LABEL org.opencontainers.image.url="https://livewyer.io"
+LABEL org.opencontainers.image.source="https://github/livewyer-ops"
+LABEL org.opencontainers.image.licenses="MIT"
+LABEL org.opencontainers.image.version="$BINARY_VERSION"
+
 # Create/set user and group
 RUN set -eu; \
     addgroup -g 1001 group; \

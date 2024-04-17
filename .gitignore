@@ -1,18 +1,3 @@
-# Repository-specific
-**/*.envrc
-**/*kubeconfig*
-tmp
-
-## SSH keys
-*.rsa
-*.pem
-
-# Various IDEs
-.project
-.idea/
-*.tmproj
-.vscode/
-
 # Created by https://www.toptal.com/developers/gitignore/api/git,vim,linux,macos,windows,sublimetext,visualstudiocode
 # Edit at https://www.toptal.com/developers/gitignore?templates=git,vim,linux,macos,windows,sublimetext,visualstudiocode
 

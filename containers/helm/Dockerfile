@@ -11,7 +11,7 @@ ARG TARGETARCH=amd64
 ARG TARGETOS=linux
 
 # Copy checksum file in the image
-COPY checksums.sha256 /checksums.sha256
+COPY checksums.sha512 /checksums.sha512
 
 # Safe scripting
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
@@ -20,7 +20,7 @@ SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 RUN wget -q "https://get.helm.sh/helm-v$BINARY_VERSION-$TARGETOS-$TARGETARCH.tar.gz"
 
 # Verify archive, extract binary and install
-RUN grep "helm-v$BINARY_VERSION-$TARGETOS-$TARGETARCH.tar.gz" checksums.sha256 | sha256sum -c; \
+RUN grep "helm-v$BINARY_VERSION-$TARGETOS-$TARGETARCH.tar.gz" checksums.sha512 | sha512sum -c; \
     tar xzf "helm-v$BINARY_VERSION-$TARGETOS-$TARGETARCH.tar.gz"; \
     install -o root -g root -m 0755 "$TARGETOS-$TARGETARCH/helm" /usr/local/bin/helm
 

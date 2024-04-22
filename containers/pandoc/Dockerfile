@@ -2,8 +2,8 @@ FROM ubuntu:22.04
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-RUN apt update && \
-    apt-get --assume-yes --no-install-recommends install ca-certificates librsvg2-bin wget git texlive texlive-fonts-recommended texlive-fonts-extra pandoc lmodern texlive-latex-extra texlive-xetex && \
+RUN apt-get update && \
+    apt-get --assume-yes --no-install-recommends install = ca-certificates librsvg2-bin wget git texlive texlive-fonts-recommended texlive-fonts-extra pandoc lmodern texlive-latex-extra texlive-xetex && \
     rm -rf /var/lib/apt/lists/*
 RUN wget -q https://github.com/cli/cli/releases/download/v2.48.0/gh_2.48.0_linux_amd64.deb && \
     dpkg -i gh_2.2.0_linux_amd64.deb

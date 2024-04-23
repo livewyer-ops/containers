@@ -24,7 +24,7 @@ RUN wget -q "https://github.com/cli/cli/releases/download/v${GH_BINARY_VERSION}/
 	  dpkg -i gh.deb
 # Install pandoc utility binary from src
 RUN wget -q "https://github.com/jgm/pandoc/releases/download/$PANDOC_BINARY_VERSION/pandoc-$PANDOC_BINARY_VERSION-1-$TARGETARCH.deb" -O pandoc.deb && \
-    dpkg -i pandoc.deb || apt-get update && apt-get -f install
+    dpkg -i pandoc.deb
 # Install yq from src
 RUN wget -q "https://github.com/mikefarah/yq/releases/download/v$YQ_BINARY_VERSION/yq_${TARGETOS}_${TARGETARCH}.tar.gz" -O /usr/bin/yq && \
     chmod +x /usr/bin/yq

@@ -2,17 +2,29 @@
 FROM ubuntu:22.04
 # Set frontend to noninteractive
 ARG DEBIAN_FRONTEND=noninteractive
+# Arguments to call later
+ARG PANDOC_BINARY_VERSION="1.6.3"
+ARG GH_BINARY_VERSION="2.48.0"
+ARG YQ_BINARY_VERSION="4.43.1"
+ARG TARGETARCH=amd64 
+ARG TARGETOS=linux
+# LABELS!!
+LABEL org.opencontainers.image.authors="hello@livewyer.com"
+LABEL org.opencontainers.image.url="https://livewyer.io"
+LABEL org.opencontainers.image.source="https://github/livewyer-ops"
+LABEL org.opencontainers.image.licenses="MIT"
+LABEL org.opencontainers.image.version="$BINARY_VERSION"
 # apt-get update && installations of some dependencies
 RUN apt-get update && \
     apt-get --assume-yes --no-install-recommends install \
     ca-certificates=20230311ubuntu0.22.04.1 librsvg2-bin=2.52.5+dfsg-3ubuntu0.2 wget=1.21.2-2ubuntu1 git=1:2.34.1-1ubuntu1.10 texlive=2021.20220204-1 texlive-fonts-recommended=2021.20220204-1 texlive-fonts-extra=2021.20220204-1 pandoc=2.9.2.1-3ubuntu2 lmodern=2.004.5-6.1 texlive-latex-extra=2021.20220204-1 texlive-xetex=2021.20220204-1 && \
     rm -rf /var/lib/apt/lists/*
 # Install GH CLI utility deb from src
-RUN wget -q https://github.com/cli/cli/releases/download/v2.48.0/gh_2.48.0_linux_amd64.deb && \
-    dpkg -i gh_2.48.0_linux_amd64.deb
+  RUN wget -q https://github.com/cli/cli/releases/download/v$GH_BINARY_VERSION/gh_$GH_BINARY_VERSION_$TARGETOS_$TARGETARCH.deb && \
+    dpkg -i gh_$GH_BINARY_VERSION_$TARGETOS_$TARGETARCH.deb
 # Install pandoc utility binary from src
-RUN wget -q https://github.com/jgm/pandoc/releases/download/3.1.13/pandoc-3.1.13-1-amd64.deb && \
-    dpkg -i pandoc-3.1.13-1-amd64.deb
+RUN wget -q https://github.com/jgm/pandoc/releases/download/3.1.13/pandoc-$PANDOC_BINARY_VERSION-1-$TARGETARCH.deb && \
+    dpkg -i pandoc-$PANDOC_BINARY_VERSION-1-$TARGETARCH.deb
 # Install yq from src
-RUN wget -q https://github.com/mikefarah/yq/releases/download/v4.43.1/yq_linux_amd64.tar.gz -O /usr/bin/yq && \
+RUN wget -q https://github.com/mikefarah/yq/releases/download/v$YQ_BINARY_VERSION/yq_$TARGETOS_$TARGETARCH.tar.gz -O /usr/bin/yq && \
     chmod +x /usr/bin/yq

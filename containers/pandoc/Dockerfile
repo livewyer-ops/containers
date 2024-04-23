@@ -26,5 +26,5 @@ RUN apt-get update && \
 RUN wget -q https://github.com/jgm/pandoc/releases/download/3.1.13/pandoc-$PANDOC_BINARY_VERSION-1-$TARGETARCH.deb && \
     dpkg -i pandoc-$PANDOC_BINARY_VERSION-1-$TARGETARCH.deb
 # Install yq from src
-RUN wget -q https://github.com/mikefarah/yq/releases/download/v$YQ_BINARY_VERSION/yq_$TARGETOS_$TARGETARCH.tar.gz -O /usr/bin/yq && \
+RUN wget -q https://github.com/mikefarah/yq/releases/download/v$YQ_BINARY_VERSION/yq_'$TARGETOS'_'$TARGETARCH'.tar.gz -O /usr/bin/yq && \
     chmod +x /usr/bin/yq

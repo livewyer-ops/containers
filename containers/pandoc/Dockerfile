@@ -3,7 +3,7 @@ FROM ubuntu:22.04
 # Set frontend to noninteractive
 ARG DEBIAN_FRONTEND=noninteractive
 # Arguments to call later
-ARG PANDOC_BINARY_VERSION="1.6.3"
+ARG PANDOC_BINARY_VERSION="3.1.13"
 ARG GH_BINARY_VERSION="2.48.0"
 ARG YQ_BINARY_VERSION="4.43.1"
 ARG TARGETARCH=amd64 

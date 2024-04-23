@@ -8,7 +8,7 @@ ARG GH_BINARY_VERSION="2.48.0"
 ARG YQ_BINARY_VERSION="4.43.1"
 ARG TARGETARCH=amd64 
 ARG TARGETOS=linux
-# LABELS!!
+# OCI Labels
 LABEL org.opencontainers.image.authors="hello@livewyer.com"
 LABEL org.opencontainers.image.url="https://livewyer.io"
 LABEL org.opencontainers.image.source="https://github/livewyer-ops"
@@ -23,7 +23,7 @@ RUN apt-get update && \
 RUN wget -q https://github.com/cli/cli/releases/download/v$GH_BINARY_VERSION/gh_"$GH_BINARY_VERSION"_"$TARGETOS"_"$TARGETARCH".deb && \
     dpkg -i gh_"$GH_BINARY_VERSION"_"$TARGETOS"_"$TARGETARCH".deb
 # Install pandoc utility binary from src
-RUN wget -q https://github.com/jgm/pandoc/releases/download/3.1.13/pandoc-$PANDOC_BINARY_VERSION-1-$TARGETARCH.deb && \
+RUN wget -q https://github.com/jgm/pandoc/releases/download/$PANDOC_BINARY_VERSION/pandoc-$PANDOC_BINARY_VERSION-1-$TARGETARCH.deb && \
     dpkg -i pandoc-$PANDOC_BINARY_VERSION-1-$TARGETARCH.deb
 # Install yq from src
 RUN wget -q https://github.com/mikefarah/yq/releases/download/v$YQ_BINARY_VERSION/yq_"$TARGETOS"_"$TARGETARCH".tar.gz -O /usr/bin/yq && \

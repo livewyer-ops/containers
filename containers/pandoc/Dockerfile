@@ -3,7 +3,7 @@ ARG TARGETARCH=amd64
 ARG TARGETOS=linux
 
 # Use Pandoc as base image
-FROM pandoc/latex:${PANDOC_BINARY_VERSION}
+FROM pandoc/extra:${PANDOC_BINARY_VERSION}
 
 # OCI Labels
 LABEL org.opencontainers.image.authors="hello@livewyer.com"

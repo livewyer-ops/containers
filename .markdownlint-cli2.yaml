@@ -1,0 +1,25 @@
+# Fix any fixable errors
+fix: false
+
+# Configure rules
+# Ref. https://github.com/DavidAnson/markdownlint/blob/v0.32.1/README.md#options
+config:
+  # Number of characters
+  MD013:
+    line_length: 160
+
+# Ignore files referenced by .gitignore
+gitignore: true
+
+# Define glob expressions to use
+globs:
+  - "**/*.md"
+
+# Disable progress on stdout
+noProgress: true
+
+# Show found files on stdout
+showFound: false
+
+# Disable banner message on stdout
+noBanner: true

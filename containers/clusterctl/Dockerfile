@@ -36,9 +36,9 @@ LABEL org.opencontainers.image.version="$BINARY_VERSION"
 
 # Create/set user and group
 RUN set -eu; \
-    addgroup -g 1001 group; \
-    adduser -D -u 1001 -G group user
-USER 1001
+    addgroup -g 1000 group; \
+    adduser -D -u 1000 -G group user
+USER 1000
 
 # Copy clusterctl binary from the build stage
 COPY --from=build /usr/local/bin/clusterctl /usr/local/bin/clusterctl

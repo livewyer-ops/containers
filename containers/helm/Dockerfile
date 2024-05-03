@@ -6,7 +6,7 @@ FROM alpine:3 as build
 LABEL org.opencontainers.image.authors="hello@livewyer.com"
 
 # Build arguments
-ARG BINARY_VERSION="3.14.3"
+ARG BINARY_VERSION="3.14.2"
 ARG TARGETARCH=amd64
 ARG TARGETOS=linux
 

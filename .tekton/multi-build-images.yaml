@@ -17,18 +17,18 @@ spec:
       - name: name
         value: containers-package-test
   params:
-    - name: REPO_OWNER
+    - name: repo_owner
       value: "{{ repo_owner }}"
-    - name: REPO_NAME
+    - name: repo_name
       value: "{{ repo_name }}"
-    - name: SOURCE_BRANCH
+    - name: source_branch
       value: "{{ source_branch }}"
-    - name: PULL_REQUEST_NUMBER
+    - name: pull_request_number
       value: "{{ pull_request_number }}"
-    - name: COMMIT_SHA
+    - name: revision
       value: "{{ revision }}"
     # -- Ref. <https://hub.docker.com/u/livewyer>
-    - name: IMAGE_REGISTRY
+    - name: image_registry
       value: livewyer
   taskRunTemplate:
     serviceAccountName: pipelines-as-code-runner

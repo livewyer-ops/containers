@@ -25,7 +25,7 @@ spec:
       value: "{{ source_branch }}"
     - name: pull_request_number
       value: "{{ pull_request_number }}"
-    - name: revision
+    - name: commit_sha
       value: "{{ revision }}"
     # -- Ref. <https://hub.docker.com/u/livewyer>
     - name: image_registry

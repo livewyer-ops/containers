@@ -17,8 +17,8 @@ spec:
       - name: name
         value: containers-package-test
   params:
-    - name: repo_owner
-      value: "{{ repo_owner }}"
+    - name: repo_url
+      value: "{{ repo_url }}"
     - name: repo_name
       value: "{{ repo_name }}"
     - name: source_branch

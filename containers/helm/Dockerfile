@@ -9,8 +9,7 @@ LABEL org.opencontainers.image.authors="hello@livewyer.com"
 ARG BINARY_VERSION="3.14.2"
 ARG TARGETARCH=amd64
 ARG TARGETOS=linux
-hello
-error
+
 # Copy checksum file in the image
 COPY checksums.sha512 /checksums.sha512
 

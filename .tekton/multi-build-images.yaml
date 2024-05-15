@@ -15,20 +15,20 @@ spec:
       - name: kind
         value: pipeline
       - name: name
-        value: containers-package-test
+        value: multi-build-push
   params:
-    - name: repo_url
-      value: "{{ repo_url }}"
-    - name: repo_name
+    - name: REPO_OWNER
+      value: "{{ repo_owner }}"
+    - name: REPO_NAME
       value: "{{ repo_name }}"
-    - name: source_branch
+    - name: SOURCE_BRANCH
       value: "{{ source_branch }}"
-    - name: pull_request_number
+    - name: PULL_REQUEST_NUMBER
       value: "{{ pull_request_number }}"
-    - name: commit_sha
+    - name: COMMIT_SHA
       value: "{{ revision }}"
     # -- Ref. <https://hub.docker.com/u/livewyer>
-    - name: image_registry
+    - name: IMAGE_REGISTRY
       value: livewyer
   taskRunTemplate:
     serviceAccountName: pipelines-as-code-runner
@@ -40,7 +40,7 @@ spec:
       volumeClaimTemplate:
         spec:
           accessModes:
-            - ReadWriteOnce
+          - ReadWriteOnce
           resources:
             requests:
               storage: 128Mi

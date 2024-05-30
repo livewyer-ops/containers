@@ -26,7 +26,4 @@ RUN set -eu; \
 USER 1000
 
 # Set BASH as a default shell
-SHELL [ "/bin/bash" ]
-
-# Set git as an entrypoint
-CMD [ "git" ]
+ENTRYPOINT [ "/bin/bash" ]

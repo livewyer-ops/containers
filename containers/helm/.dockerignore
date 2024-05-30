@@ -1,0 +1,8 @@
+# MD files
+*.md
+
+# Configuration files
+*.ini
+
+# Ignore files
+.dockerignore

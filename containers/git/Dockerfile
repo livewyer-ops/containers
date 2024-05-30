@@ -14,6 +14,7 @@ LABEL org.opencontainers.image.licenses="MIT"
 
 # Install necessary packages
 RUN apk --update --upgrade --no-cache add \
+    bash jq \
     git=${GIT_CLI_VERSION} \
     github-cli=${GH_CLI_VERSION} \
     glab=${GLAB_CLI_VERSOIN}
@@ -25,4 +26,4 @@ RUN set -eu; \
 USER 1000
 
 # Set git CLI as CMD command
-CMD [ "git" ]
+SHELL [ "bash" ]

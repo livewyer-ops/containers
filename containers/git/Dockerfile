@@ -1,5 +1,5 @@
 # Final image
-FROM alpine:3 AS git
+FROM alpine:3
 
 # Build arguments
 ARG GIT_CLI_VERSION="2.45.1-r0"
@@ -18,12 +18,6 @@ RUN apk --update --upgrade --no-cache add \
     git=${GIT_CLI_VERSION} \
     github-cli=${GH_CLI_VERSION} \
     glab=${GLAB_CLI_VERSION}
-
-# Create/set user and group
-RUN set -eu; \
-    addgroup -g 1000 group; \
-    adduser -D -u 1000 -G group user
-USER 1000
 
 # Set BASH as a default shell
 ENTRYPOINT [ "/bin/bash" ]

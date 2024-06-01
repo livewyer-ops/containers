@@ -40,7 +40,7 @@ RUN set -eu; \
     adduser -D -u 1000 -G group user
 USER 1000
 
-# Copy clusterctl binary from the build stage
+# Copy helm binary from the build stage
 COPY --from=build /usr/local/bin/helm /usr/local/bin/helm
 
 # Set binary as entrypoint command

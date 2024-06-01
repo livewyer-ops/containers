@@ -26,7 +26,7 @@ RUN set -eu; \
     adduser -D -u 1000 -G group user
 USER 1000
 
-# Copy clusterctl binary from the build stage
+# Copy yamlfmt binary from the build stage
 COPY --from=build /go/bin/yamlfmt /usr/local/bin/yamlfmt
 
 # Set binary as entrypoint command

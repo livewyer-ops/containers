@@ -10,4 +10,4 @@ It brings pull requests, issues, and other GitHub concepts to the terminal next 
 and your code without switching between windows and browser tabs.  
 Work with issues, merge requests, watch running pipelines directly from your CLI among other features.
 
-This image is packages by [LiveWyer](https://livewyer.io) for CI use.
+This image is packaged by [LiveWyer](https://livewyer.io) for CI use.

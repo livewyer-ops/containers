@@ -1,5 +1,5 @@
 # Final image
-FROM alpine:3
+FROM alpine:3.20
 
 # Build arguments
 ARG GIT_CLI_VERSION="2.45.1-r0"

@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1
 kind: PipelineRun
 metadata:
-  name: public-containers-multi-build
+  name: containers-containers-package
   annotations:
     pipelinesascode.tekton.dev/on-cel-expression: |
       ( event == "pull_request" || ( event == "push" && source_branch == "main") ) && body.sender.login != "livewyer-bot"
@@ -15,7 +15,7 @@ spec:
       - name: kind
         value: pipeline
       - name: name
-        value: multi-build-push
+        value: containers-package
   params:
     - name: REPO_OWNER
       value: "{{ repo_owner }}"

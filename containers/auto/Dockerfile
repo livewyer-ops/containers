@@ -21,7 +21,7 @@ COPY checksums.sha512 /checksums.sha512
 # Safe scripting
 SHELL ["/bin/bash", "-euo", "pipefail", "-c"]
 
-# # Install required packages
+# Install required packages
 RUN install_packages \
     ca-certificates \
     git \
@@ -32,6 +32,13 @@ RUN wget -q "https://github.com/intuit/auto/releases/download/v${BINARY_VERSION}
     grep "auto-$TARGETOS.gz" checksums.sha512 | sha512sum -c; \
     gunzip "auto-$TARGETOS.gz"; install -o root -g root -m 0755 "auto-$TARGETOS" /usr/local/bin/auto; \
     rm checksums.sha512 "auto-$TARGETOS"
+
+# Create/set user and group
+RUN set -eu; \
+    groupadd -g 65532 git; \
+    useradd -m -g 65532 -u 65532 git
+USER 65532
+WORKDIR /home/git
 
 # Set bash as default command
 CMD [ "/usr/local/bin/auto" ]

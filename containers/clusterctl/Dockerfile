@@ -1,6 +1,6 @@
 ## Stage 1: prepare binary
 # Base image
-FROM alpine:3.19 as build
+FROM alpine:3 as build
 
 # Build arguments
 ARG BINARY_VERSION="1.6.3"

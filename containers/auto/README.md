@@ -1,6 +1,6 @@
 # LiveWyer container image for Intuit Auto
 
-[auto](https://intuit.github.io/auto) is a CLI tool that generates releases based on semantic version labels on pull requests.
+[auto](https://intuit.github.io/auto) is a CLI tool that generates Github releases based on semantic version labels applied to pull requests.
 
 This image is packaged by [LiveWyer](https://livewyer.io) for CI use.
 

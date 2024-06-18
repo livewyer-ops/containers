@@ -6,7 +6,7 @@ This image is packaged by [LiveWyer](https://livewyer.io) for CI use.
 
 ## Quick reference
 
-* __Maintained by:__
+* __Image maintained by:__
 
   [the LiveWyer containers Maintainers](https://github.com/livewyer-ops/containers/tree/main)
 

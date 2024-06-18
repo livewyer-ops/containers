@@ -1,0 +1,7 @@
+# Tekton Pipeline as Code
+# Ref. https://pipelinesascode.com/docs/guide/running
+
+approvers:
+- containers-maintainers
+reviewers:
+- containers-maintainers

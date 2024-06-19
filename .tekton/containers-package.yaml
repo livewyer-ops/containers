@@ -1,13 +1,10 @@
 apiVersion: tekton.dev/v1
 kind: PipelineRun
 metadata:
-  name: public-containers-multi-build
+  name: containers-package-containers
   annotations:
     pipelinesascode.tekton.dev/on-cel-expression: |
       ( event == "pull_request" || ( event == "push" && source_branch == "main") ) && body.sender.login != "livewyer-bot"
-
-    # The branch or tag we are targeting (i.e.: main, refs/tags/*)
-    pipelinesascode.tekton.dev/on-target-branch: "[main]"
 spec:
   pipelineRef:
     resolver: cluster
@@ -15,17 +12,15 @@ spec:
       - name: kind
         value: pipeline
       - name: name
-        value: multi-build-push
+        value: containers-package
   params:
-    - name: REPO_OWNER
-      value: "{{ repo_owner }}"
-    - name: REPO_NAME
-      value: "{{ repo_name }}"
-    - name: SOURCE_BRANCH
+    - name: url
+      value: "{{ repo_url }}"
+    - name: revision
+      value: "{{ revision }}"
+    - name: source_branch
       value: "{{ source_branch }}"
-    - name: PULL_REQUEST_NUMBER
-      value: "{{ pull_request_number }}"
-    - name: COMMIT_SHA
+    - name: commit_sha
       value: "{{ revision }}"
     # -- Ref. <https://hub.docker.com/u/livewyer>
     - name: IMAGE_REGISTRY
@@ -47,3 +42,6 @@ spec:
     - name: dockerconfig
       secret:
         secretName: lw-dockerhub-regcred
+    - name: basic-auth
+      secret:
+        secretName: "{{ git_auth_secret }}"

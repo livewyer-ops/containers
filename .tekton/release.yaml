@@ -1,0 +1,43 @@
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  name: release-containers
+  annotations:
+    pipelinesascode.tekton.dev/on-cel-expression: |
+      ( event == "push" && source_branch == "main") && body.sender.login != "livewyer-bot"
+
+spec:
+  pipelineRef:
+    resolver: cluster
+    params:
+      - name: kind
+        value: pipeline
+      - name: name
+        value: release
+
+  params:
+    - name: url
+      value: "{{repo_url}}"
+    - name: revision
+      value: "{{revision}}"
+    - name: targetBranch
+      value: "{{target_branch}}"
+
+  workspaces:
+    - name: basic-auth
+      secret:
+        secretName: "{{git_auth_secret}}"
+    - name: source
+      volumeClaimTemplate:
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 128Mi
+
+  taskRunTemplate:
+    serviceAccountName: pipelines-as-code-runner
+    podTemplate:
+      securityContext:
+        fsGroup: 65532

@@ -28,9 +28,8 @@ spec:
       value: "containers"
     - name: fileName
       value: "Dockerfile"
-    - name: imageRegistry
     # -- Ref. <https://hub.docker.com/u/livewyer>
-    - name: image_registry
+    - name: imageRegistry
       value: livewyer
 
   workspaces:

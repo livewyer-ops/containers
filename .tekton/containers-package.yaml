@@ -1,10 +1,11 @@
 apiVersion: tekton.dev/v1
 kind: PipelineRun
 metadata:
-  name: containers-package-containers
+  name: containers-package-{{repo_name}}
   annotations:
     pipelinesascode.tekton.dev/on-cel-expression: |
-      ( event == "pull_request" || ( event == "push" && source_branch == "main") ) && body.sender.login != "livewyer-bot"
+      ( event == "pull_request" || ( event == "push" && source_branch == "main") ) && ( body.sender.login != "livewyer-bot" && body.sender.login != "lw-tkn[bot]" )
+
 spec:
   pipelineRef:
     resolver: cluster
@@ -13,35 +14,43 @@ spec:
         value: pipeline
       - name: name
         value: containers-package
+
   params:
     - name: url
-      value: "{{ repo_url }}"
+      value: "{{repo_url}}"
     - name: revision
-      value: "{{ revision }}"
-    - name: source_branch
-      value: "{{ source_branch }}"
-    - name: commit_sha
-      value: "{{ revision }}"
+      value: "{{revision}}"
+    - name: sourceBranch
+      value: "{{source_branch}}"
+    - name: targetBranch
+      value: "{{target_branch}}"
+    - name: subDirectories
+      value: "containers"
+    - name: fileName
+      value: "Dockerfile"
+    - name: imageRegistry
     # -- Ref. <https://hub.docker.com/u/livewyer>
     - name: image_registry
       value: livewyer
+
+  workspaces:
+    - name: basic-auth
+      secret:
+        secretName: "{{git_auth_secret}}"
+    - name: source
+      volumeClaimTemplate:
+        spec:
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 128Mi
+    - name: docker-config
+      secret:
+        secretName: container-registry-credentials
+
   taskRunTemplate:
     serviceAccountName: pipelines-as-code-runner
     podTemplate:
       securityContext:
         fsGroup: 65532
-  workspaces:
-    - name: source
-      volumeClaimTemplate:
-        spec:
-          accessModes:
-          - ReadWriteOnce
-          resources:
-            requests:
-              storage: 128Mi
-    - name: dockerconfig
-      secret:
-        secretName: lw-dockerhub-regcred
-    - name: basic-auth
-      secret:
-        secretName: "{{ git_auth_secret }}"

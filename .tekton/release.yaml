@@ -4,7 +4,7 @@ metadata:
   name: release-{{repo_name}}
   annotations:
     pipelinesascode.tekton.dev/on-cel-expression: |
-      ( event == "push" && source_branch == "main") && body.sender.login != "livewyer-bot"
+      ( event == "push" && source_branch == "main") && ( body.sender.login != "lw-tkn[bot]" && body.sender.login != "livewyer-bot" )
 
 spec:
   pipelineRef:

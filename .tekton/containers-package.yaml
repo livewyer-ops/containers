@@ -46,7 +46,7 @@ spec:
               storage: 128Mi
     - name: docker-config
       secret:
-        secretName: container-registry-credentials
+        secretName: lw-dockerhub-regcred
 
   taskRunTemplate:
     serviceAccountName: pipelines-as-code-runner

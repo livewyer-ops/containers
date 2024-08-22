@@ -3,7 +3,7 @@
 FROM golang:1-alpine as build
 
 # Build arguments
-ARG BINARY_VERSION="0.11.0"
+ARG BINARY_VERSION="0.13.0"
 ARG TARGETARCH=amd64
 ARG TARGETOS=linux
 

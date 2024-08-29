@@ -16,6 +16,8 @@ spec:
         value: containers-package
 
   params:
+    - name: debug
+      value: ""
     - name: url
       value: "{{repo_url}}"
     - name: revision

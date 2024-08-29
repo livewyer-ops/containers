@@ -3,7 +3,7 @@
 FROM alpine:3 as build
 
 # Build arguments
-ARG BINARY_VERSION="1.6.3"
+ARG BINARY_VERSION="1.8.1"
 ARG TARGETARCH=amd64
 ARG TARGETOS=linux
 
